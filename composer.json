@@ -10,6 +10,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "awcodes/filament-tiptap-editor": "^3.2",
+        "codedor/filament-link-picker": "^0.1",
+        "codedor/filament-media-library": "^0.3",
         "illuminate/contracts": "^10.0",
         "spatie/laravel-package-tools": "^1.12"
     },
