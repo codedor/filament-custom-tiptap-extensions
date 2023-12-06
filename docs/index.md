@@ -1,4 +1,4 @@
-# :package_description
+# Some custom extensions for Filament Tiptap
 
 ## Introduction
 

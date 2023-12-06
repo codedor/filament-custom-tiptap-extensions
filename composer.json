@@ -1,12 +1,12 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "codedor/filament-custom-tiptap-extensions",
+    "description": "Some custom extensions for Filament Tiptap",
     "keywords": [
-        ":vendor_name",
+        "codedor",
         "laravel",
-        ":package_slug"
+        "filament-custom-tiptap-extensions"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/codedor/filament-custom-tiptap-extensions",
     "license": "MIT",
     "require": {
         "php": "^8.2",
@@ -26,19 +26,19 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Codedor\\FilamentCustomTiptapExtensions\\": "src",
+            "Codedor\\FilamentCustomTiptapExtensions\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Codedor\\FilamentCustomTiptapExtensions\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\Providers\\SkeletonServiceProvider"
+                "Codedor\\FilamentCustomTiptapExtensions\\Providers\\FilamentCustomTiptapExtensionsServiceProvider"
             ]
         }
     },
