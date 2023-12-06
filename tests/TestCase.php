@@ -2,9 +2,9 @@
 
 namespace Codedor\FilamentCustomTiptapExtensions\Tests;
 
+use Codedor\FilamentCustomTiptapExtensions\Providers\FilamentCustomTiptapExtensionsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Codedor\FilamentCustomTiptapExtensions\Providers\FilamentCustomTiptapExtensionsServiceProvider;
 
 class TestCase extends Orchestra
 {
