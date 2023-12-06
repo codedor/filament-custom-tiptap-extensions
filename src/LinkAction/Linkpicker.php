@@ -6,5 +6,4 @@ use Tiptap\Core\Node;
 
 class Linkpicker extends Node
 {
-
 }

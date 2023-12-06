@@ -41,7 +41,6 @@ class MediaAction extends Action
             return __('filament-tiptap-editor::media-modal.heading.' . $context);
         });
 
-
         $this->form(function () {
             return [
                 AttachmentInput::make('attachment')

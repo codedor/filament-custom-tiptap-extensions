@@ -7,7 +7,6 @@ use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Grid;
 use FilamentTiptapEditor\TiptapEditor;
-use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -37,10 +36,10 @@ class LinkAction extends Action
                             ->replace(self::PREFIX, '', $arguments['href'])
                             ->replaceFirst('[[', '')
                             ->replaceLast(']]', ''),
-                            true
+                        true
                     ),
                 ]);
-            })->modalHeading(function(array $arguments) {
+            })->modalHeading(function (array $arguments) {
                 $context = blank($arguments['href']) ? 'insert' : 'update';
 
                 return __('filament-tiptap-editor::link-modal.heading.' . $context);
@@ -52,8 +51,8 @@ class LinkAction extends Action
                             ->label(__('filament-tiptap-editor::link-modal.labels.url'))
                             ->columnSpan('full')
                             ->dehydrateStateUsing(fn ($state) => self::PREFIX . '[[' . json_encode($state) . ']]'),
-                    ])
-            ])->action(function(TiptapEditor $component, $data, array $arguments, Component $livewire) {
+                    ]),
+            ])->action(function (TiptapEditor $component, $data, array $arguments, Component $livewire) {
                 if (isset($arguments['remove_link']) && $arguments['remove_link'] === true) {
                     $component->getLivewire()->dispatch(
                         'insert-content',
@@ -81,7 +80,7 @@ class LinkAction extends Action
             ->extraModalFooterActions(function (Action $action): array {
                 return [
                     $action->makeModalSubmitAction('remove_link', [
-                        'remove_link' => true
+                        'remove_link' => true,
                     ])
                         ->color('danger'),
                 ];
