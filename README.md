@@ -1,8 +1,6 @@
 # Some custom extensions for Filament Tiptap
 
-## 
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+This package provides extensions for the `awcodes/filament-tiptap-editor` package to integrate it with our own packages.
 
 ## Installation
 

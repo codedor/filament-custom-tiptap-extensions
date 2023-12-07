@@ -1,6 +1,8 @@
-**# Some custom extensions for Filament Tiptap
+** Some custom extensions for Filament Tiptap
 
 ## Introduction
+
+This package provides extensions for the `awcodes/filament-tiptap-editor` package to integrate it with our own packages.
 
 ## Installation
 
