@@ -66,7 +66,9 @@ return [
 ];
 ```
 
-## LinkAction
+And replace `'link'` with `'linkpicker'` in the `toolbar` config.
+
+## MediaAction
 
 This overrides the default `MediaAction` to use our [media library](https://github.com/codedor/filament-media-library) instead.
 

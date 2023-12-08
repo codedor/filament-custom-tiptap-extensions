@@ -30,6 +30,7 @@ class LinkAction extends Action
                 'rel' => '',
             ])
             ->mountUsing(function (ComponentContainer $form, array $arguments) {
+
                 $form->fill([
                     'href' => json_decode(
                         Str::of($arguments['href'])

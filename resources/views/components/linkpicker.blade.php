@@ -22,6 +22,7 @@
                 href: link.href || '',
             };
 
+            console.log(arguments, '{{ $statePath }}');
             $wire.dispatchFormEvent('tiptap::setLinkContent', '{{ $statePath }}', arguments);
         }
     }"
