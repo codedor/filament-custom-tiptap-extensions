@@ -49,8 +49,7 @@ class LinkAction extends Action
                     LinkPickerInput::make('href')
                         ->hiddenLabel()
                         ->columnSpan('full')
-                        ->dehydrateStateUsing(fn ($state) =>
-                            filled($state) ? self::PREFIX . '[[' . json_encode($state) . ']]' : null
+                        ->dehydrateStateUsing(fn ($state) => filled($state) ? self::PREFIX . '[[' . json_encode($state) . ']]' : null
                         ),
                 ]),
             ])
