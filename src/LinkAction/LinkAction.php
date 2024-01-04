@@ -23,14 +23,12 @@ class LinkAction extends Action
     {
         parent::setUp();
 
-        $this
-            ->modalWidth('md')
+        $this->modalWidth('md')
             ->arguments([
                 'href' => '',
                 'rel' => '',
             ])
             ->mountUsing(function (ComponentContainer $form, array $arguments) {
-
                 $form->fill([
                     'href' => json_decode(
                         Str::of($arguments['href'])
@@ -40,51 +38,39 @@ class LinkAction extends Action
                         true
                     ),
                 ]);
-            })->modalHeading(function (array $arguments) {
+            })
+            ->modalHeading(function (array $arguments) {
                 $context = blank($arguments['href']) ? 'insert' : 'update';
 
                 return __('filament-tiptap-editor::link-modal.heading.' . $context);
             })
             ->form([
-                Grid::make(['md' => 2])
-                    ->schema([
-                        LinkPickerInput::make('href')
-                            ->label(__('filament-tiptap-editor::link-modal.labels.url'))
-                            ->columnSpan('full')
-                            ->dehydrateStateUsing(fn ($state) => self::PREFIX . '[[' . json_encode($state) . ']]'),
-                    ]),
-            ])->action(function (TiptapEditor $component, $data, array $arguments, Component $livewire) {
-                if (isset($arguments['remove_link']) && $arguments['remove_link'] === true) {
+                Grid::make(['md' => 2])->schema([
+                    LinkPickerInput::make('href')
+                        ->hiddenLabel()
+                        ->columnSpan('full')
+                        ->dehydrateStateUsing(fn ($state) =>
+                            filled($state) ? self::PREFIX . '[[' . json_encode($state) . ']]' : null
+                        ),
+                ]),
+            ])
+            ->action(function (TiptapEditor $component, $data, array $arguments, Component $livewire) {
+                if (filled($data['href'])) {
                     $component->getLivewire()->dispatch(
                         'insert-content',
                         type: 'link',
                         statePath: $component->getStatePath(),
-                        href: '',
-                        id: null
+                        href: $data['href'],
+                        id: ''
                     );
-
-                    $component->state($component->getState());
-
-                    return;
+                } else {
+                    $component->getLivewire()->dispatch(
+                        'unset-link',
+                        statePath: $component->getStatePath(),
+                    );
                 }
 
-                $component->getLivewire()->dispatch(
-                    'insert-content',
-                    type: 'link',
-                    statePath: $component->getStatePath(),
-                    href: $data['href'],
-                    id: ''
-                );
-
                 $component->state($component->getState());
-            })
-            ->extraModalFooterActions(function (Action $action): array {
-                return [
-                    $action->makeModalSubmitAction('remove_link', [
-                        'remove_link' => true,
-                    ])
-                        ->color('danger'),
-                ];
             });
     }
 }
