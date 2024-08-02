@@ -10,8 +10,7 @@ class Linkpicker extends Component
 {
     public function __construct(
         public string $statePath
-    ) {
-    }
+    ) {}
 
     public function render(): View|Closure|string
     {
