@@ -12,7 +12,7 @@
         "php": "^8.2|^8.3",
         "awcodes/filament-tiptap-editor": "^3.2",
         "codedor/filament-link-picker": "^1.0",
-        "codedor/filament-media-library": "dev-feature/laravel-11-support",
+        "codedor/filament-media-library": "^1.0|^2.0",
         "filament/filament": "^3.1",
         "illuminate/contracts": "^10.0|^11.0",
         "spatie/laravel-package-tools": "^1.12"
