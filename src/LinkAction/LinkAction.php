@@ -49,18 +49,22 @@ class LinkAction extends Action
                     LinkPickerInput::make('href')
                         ->hiddenLabel()
                         ->columnSpan('full')
-                        ->dehydrateStateUsing(fn ($state) => filled($state) ? self::PREFIX . '[[' . json_encode($state) . ']]' : null
+                        ->dehydrateStateUsing(
+                            fn ($state) => filled($state)
+                                ? self::PREFIX . '[[' . json_encode($state) . ']]'
+                                : null
                         ),
                 ]),
             ])
-            ->action(function (TiptapEditor $component, $data, array $arguments, Component $livewire) {
+            ->action(function (TiptapEditor $component, $data, array $arguments) {
                 if (filled($data['href'])) {
                     $component->getLivewire()->dispatch(
-                        'insert-content',
+                        event: 'insertFromAction',
                         type: 'link',
                         statePath: $component->getStatePath(),
                         href: $data['href'],
-                        id: ''
+                        id: '',
+                        coordinates: $arguments['coordinates'],
                     );
                 } else {
                     $component->getLivewire()->dispatch(
