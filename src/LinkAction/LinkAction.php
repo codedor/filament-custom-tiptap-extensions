@@ -8,7 +8,6 @@ use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Grid;
 use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Support\Str;
-use Livewire\Component;
 
 class LinkAction extends Action
 {
