@@ -11,8 +11,8 @@
     "require": {
         "php": "^8.2",
         "awcodes/filament-tiptap-editor": "^3.2",
-        "codedor/filament-link-picker": "dev-laravel-12 as 1.6.0",
-        "codedor/filament-media-library": "dev-laravel-12 as 2.1.0",
+        "codedor/filament-link-picker": "^1.6",
+        "codedor/filament-media-library": "^1.0|^2.0|^3.0",
         "filament/filament": "^3.1",
         "illuminate/contracts": "^10.0|^11.0|^12.0",
         "spatie/laravel-package-tools": "^1.12"
