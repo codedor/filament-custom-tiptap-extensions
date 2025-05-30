@@ -52,7 +52,6 @@ class LinkAction extends \Filament\Actions\Action
             ])
             ->action(function (RichEditor $component, $data, array $arguments, Component $livewire) {
                 if (filled($data['href'])) {
-                    // TODO: how to do this in Filament 4?
                     $component->getLivewire()->dispatch(
                         'insert-content',
                         type: 'link',
@@ -61,7 +60,6 @@ class LinkAction extends \Filament\Actions\Action
                         id: ''
                     );
                 } else {
-                    // TODO: how to do this in Filament 4?
                     $component->getLivewire()->dispatch(
                         'unset-link',
                         statePath: $component->getStatePath(),
