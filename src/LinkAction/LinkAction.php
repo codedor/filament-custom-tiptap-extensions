@@ -3,14 +3,11 @@
 namespace Codedor\FilamentCustomTiptapExtensions\LinkAction;
 
 use Codedor\LinkPicker\Filament\LinkPickerInput;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Components\Grid;
-use FilamentTiptapEditor\TiptapEditor;
+use Filament\Forms\Components\RichEditor;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
-class LinkAction extends Action
+class LinkAction extends \Filament\Actions\Action
 {
     private const PREFIX = '#link-picker=';
 
@@ -28,8 +25,8 @@ class LinkAction extends Action
                 'href' => '',
                 'rel' => '',
             ])
-            ->mountUsing(function (ComponentContainer $form, array $arguments) {
-                $form->fill([
+            ->mountUsing(function (\Filament\Schemas\Schema $schema, array $arguments) {
+                $schema->fill([
                     'href' => json_decode(
                         Str::of($arguments['href'])
                             ->replace(self::PREFIX, '', $arguments['href'])
@@ -44,8 +41,8 @@ class LinkAction extends Action
 
                 return __('filament-tiptap-editor::link-modal.heading.' . $context);
             })
-            ->form([
-                Grid::make(['md' => 2])->schema([
+            ->schema([
+                \Filament\Schemas\Components\Grid::make(['md' => 2])->schema([
                     LinkPickerInput::make('href')
                         ->hiddenLabel()
                         ->columnSpan('full')
@@ -53,8 +50,9 @@ class LinkAction extends Action
                         ),
                 ]),
             ])
-            ->action(function (TiptapEditor $component, $data, array $arguments, Component $livewire) {
+            ->action(function (RichEditor $component, $data, array $arguments, Component $livewire) {
                 if (filled($data['href'])) {
+                    // TODO: how to do this in Filament 4?
                     $component->getLivewire()->dispatch(
                         'insert-content',
                         type: 'link',
@@ -63,6 +61,7 @@ class LinkAction extends Action
                         id: ''
                     );
                 } else {
+                    // TODO: how to do this in Filament 4?
                     $component->getLivewire()->dispatch(
                         'unset-link',
                         statePath: $component->getStatePath(),

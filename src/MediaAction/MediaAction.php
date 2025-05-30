@@ -6,9 +6,10 @@ use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Codedor\MediaLibrary\Models\Attachment;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\RichEditor;
 use FilamentTiptapEditor\TiptapEditor;
 
-class MediaAction extends Action
+class MediaAction extends \Filament\Actions\Action
 {
     public static function getDefaultName(): ?string
     {
@@ -25,14 +26,14 @@ class MediaAction extends Action
 
         $this->modalWidth('md');
 
-        $this->mountUsing(function (TiptapEditor $component, ComponentContainer $form, array $arguments) {
+        $this->mountUsing(function (RichEditor $component, \Filament\Schemas\Schema $schema, array $arguments) {
             preg_match(
                 '/\/([\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12})\//iD',
                 $arguments['src'] ?? null,
                 $matches
             );
 
-            $form->fill(['attachment' => $matches[1] ?? null]);
+            $schema->fill(['attachment' => $matches[1] ?? null]);
         });
 
         $this->modalHeading(function (array $arguments) {
@@ -41,7 +42,7 @@ class MediaAction extends Action
             return __('filament-tiptap-editor::media-modal.heading.' . $context);
         });
 
-        $this->form(function () {
+        $this->schema(function () {
             return [
                 AttachmentInput::make('attachment')
                     ->hiddenLabel()
@@ -51,7 +52,7 @@ class MediaAction extends Action
             ];
         });
 
-        $this->action(function (TiptapEditor $component, $data) {
+        $this->action(function (RichEditor $component, $data) {
             $attachment = Attachment::find($data['attachment']);
 
             $component->getLivewire()->dispatch(
