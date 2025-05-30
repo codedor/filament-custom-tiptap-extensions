@@ -4,10 +4,7 @@ namespace Codedor\FilamentCustomTiptapExtensions\MediaAction;
 
 use Codedor\MediaLibrary\Filament\AttachmentInput;
 use Codedor\MediaLibrary\Models\Attachment;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\RichEditor;
-use FilamentTiptapEditor\TiptapEditor;
 
 class MediaAction extends \Filament\Actions\Action
 {
