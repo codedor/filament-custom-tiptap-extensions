@@ -147,4 +147,3 @@ class LinkPickerRichContentPlugin implements RichContentPlugin
         ];
     }
 }
-
