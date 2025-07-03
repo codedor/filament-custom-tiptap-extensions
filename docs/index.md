@@ -12,73 +12,34 @@ First, install this package via the Composer package manager:
 composer require codedor/filament-custom-tiptap-extensions
 ```
 
-## LinkAction
+## LinkPicker Plugin
 
-This overrides the default `LinkAction` to use our [link picker](https://github.com/codedor/filament-link-picker) instead.
+This provides a custom Tiptap plugin that allows you to pick links via our [link picker](https://github.com/codedor/filament-link-picker) package.
 
-### Setup
-
-Update the `filament-tiptap-editor` config file to use the custom `LinkAction`:
+If you want to enable this plugin for each RichEditor, you can do this by adding the following code to your Filament service provider:
 
 ```php
-return [
-    // ...
-    'extensions' => [
-        // ...
-        [
-            'id' => 'linkpicker',
-            'name' => 'Linkpicker',
-            'button' => 'filament-custom-tiptap-extensions::linkpicker',
-            'parser' => \Codedor\FilamentCustomTiptapExtensions\LinkAction\Linkpicker::class,
-        ],
-    ],
-];
+use Codedor\FilamentCustomTiptapExtensions\Plugins\LinkPickerRichContentPlugin;
+use Filament\Forms\Components\RichEditor;
+
+RichEditor::configureUsing(function (RichEditor $editor) {
+    $editor
+        ->toolbarButtons([
+            [
+                'h2', 'h3', 'bulletList', 'orderedList', 'blockquote',
+            ],
+            [
+                'bold', 'italic', 'strike', 'underline', 'superscript', 'subscript', 'lead', 'small', 'alignStart', 'alignCenter', 'alignEnd',
+            ],
+            [
+                'linkPicker',
+            ],
+            ['undo', 'redo'],
+        ])
+        ->plugins([
+            LinkPickerRichContentPlugin::make(),
+        ]);
+});
 ```
 
-Follow the instructions [here](https://github.com/awcodes/filament-tiptap-editor#custom-extensions) to add a `extension.js` file.
-
-```js
-import Link from '@tiptap/extension-link'
-
-window.TiptapEditorExtensions = {
-  // ...
-  linkpicker: [
-    Link.configure({
-      openOnClick: false,
-      HTMLAttributes: {
-        // Change rel to different value
-        // Allow search engines to follow links(remove nofollow)
-        rel: '',
-        // Remove target entirely so links open in current tab
-        target: null
-      }
-    })
-  ]
-}
-```
-
-Update the `link_action` in the config file to 
-```php
-return [
-    // ...
-    'link_action' => \Codedor\FilamentCustomTiptapExtensions\LinkAction\LinkAction::class,
-    // ...
-];
-```
-
-And replace `'link'` with `'linkpicker'` in the `toolbar` config.
-
-## MediaAction
-
-This overrides the default `MediaAction` to use our [media library](https://github.com/codedor/filament-media-library) instead.
-
-### Setup
-
-Update the `media_action` in the config file to
-```php
-return [
-    // ...
-    'media_action' => \Codedor\FilamentCustomTiptapExtensions\MediaAction\MediaAction::class,
-    // ...
-];
-```
+That's all you need to do to enable the LinkPicker plugin for all RichEditor components in your Filament application.
