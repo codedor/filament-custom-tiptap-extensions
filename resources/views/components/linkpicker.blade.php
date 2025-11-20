@@ -20,6 +20,7 @@
 
             let arguments = {
                 href: link.href || '',
+                coordinates: this.editor().view.state.selection.ranges,
             };
 
             $wire.dispatchFormEvent('tiptap::setLinkContent', '{{ $statePath }}', arguments);
