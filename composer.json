@@ -10,17 +10,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-<<<<<<< HEAD
         "codedor/filament-link-picker": "dev-feature/filament-v4",
         "filament/filament": "^4.0",
         "illuminate/contracts": "^11.0|^12.0",
-=======
-        "awcodes/filament-tiptap-editor": "^3.5",
-        "codedor/filament-link-picker": "^1.6",
-        "codedor/filament-media-library": "^1.0|^2.0|^3.0",
-        "filament/filament": "^3.1",
-        "illuminate/contracts": "^10.0|^11.0|^12.0",
->>>>>>> master
         "spatie/laravel-package-tools": "^1.12"
     },
     "require-dev": {
